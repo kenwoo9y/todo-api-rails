@@ -11,12 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2025_04_18_132848) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "tasks", force: :cascade do |t|
+  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", limit: 30
-    t.string "description", limit: 255
+    t.string "description"
     t.date "due_date"
     t.string "status", limit: 10
     t.bigint "owner_id"
@@ -25,7 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_04_18_132848) do
     t.index ["owner_id"], name: "index_tasks_on_owner_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username", limit: 30
     t.string "email", limit: 80
     t.string "first_name", limit: 40
