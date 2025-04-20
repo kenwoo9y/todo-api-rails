@@ -4,12 +4,12 @@ class TasksController < ApplicationController
   # GET /tasks
   def index
     @tasks = Task.all
-    render json: @tasks
+    render json: @tasks, status: :ok
   end
 
   # GET /tasks/:id
   def show
-    render json: @task
+    render json: @task, status: :ok
   end
 
   # POST /tasks
@@ -25,7 +25,7 @@ class TasksController < ApplicationController
   # PATCH /tasks/:id
   def update
     if @task.update(task_params)
-      render json: @task
+      render json: @task, status: :ok
     else
       render json: @task.errors, status: :unprocessable_entity
     end
