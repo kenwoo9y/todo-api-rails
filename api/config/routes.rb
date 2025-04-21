@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     collection do
       get 'show_by_username', to: 'users#show_by_username'
     end
+    member do
+      get 'tasks', to: 'users#tasks_by_user'
+    end
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

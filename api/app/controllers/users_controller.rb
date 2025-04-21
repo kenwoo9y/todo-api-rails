@@ -47,6 +47,17 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/:id/tasks
+  def tasks_by_user
+    @user = User.find(params[:id])
+    if @user
+      @tasks = @user.tasks
+      render json: @tasks, status: :ok
+    else
+      render json: { error: "User not found" }, status: :not_found
+    end
+  end
+
   private
 
   def set_user
