@@ -7,7 +7,8 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 WORKDIR /app/api
 
 # GemfileとGemfile.lockを先にコピー（キャッシュを効かせるため）
-COPY ./api/Gemfile ./api/Gemfile.lock ./
+COPY ./api/Gemfile ./Gemfile
+COPY ./api/Gemfile.lock ./Gemfile.lock
 
 # bundlerインストールと依存解決
 RUN gem install bundler && bundle install
