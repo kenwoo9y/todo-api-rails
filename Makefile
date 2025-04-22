@@ -1,4 +1,4 @@
-.PHONY: help build-local up down logs ps
+.PHONY: help build-local up down logs ps test mysql
 .DEFAULT_GOAL := help
 
 build-local: ## Build docker image to local development
@@ -15,6 +15,12 @@ logs: ## Tail docker compose logs
 
 ps: ## Check container status
 	docker compose ps
+
+test: ## Execute tests
+	docker compose run --rm todo-api bundle exec rspec
+
+mysql: ## Access MySQL Database
+	docker-compose exec mysql-db mysql -u root -p
 
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
