@@ -1,4 +1,4 @@
-.PHONY: help build-local up down logs ps test mysql
+.PHONY: help build-local up down logs ps test migrate mysql
 .DEFAULT_GOAL := help
 
 build-local: ## Build docker image to local development
@@ -18,6 +18,9 @@ ps: ## Check container status
 
 test: ## Execute tests
 	docker compose run --rm todo-api bundle exec rspec
+
+migrate:  ## Execute migration
+	docker compose exec todo-api rails db:migrate
 
 mysql: ## Access MySQL Database
 	docker-compose exec mysql-db mysql -u root -p
