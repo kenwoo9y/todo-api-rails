@@ -12,6 +12,10 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
+require 'simplecov'
+SimpleCov.start 'rails' do
+  minimum_coverage 80 # カバレッジが80%未満の場合は失敗
+end
 require 'factory_bot_rails'
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
