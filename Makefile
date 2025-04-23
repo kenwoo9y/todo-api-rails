@@ -23,7 +23,7 @@ migrate:  ## Execute migration
 	docker compose exec todo-api rails db:migrate
 
 mysql: ## Access MySQL Database
-	docker-compose exec mysql-db mysql -u root -p
+	docker compose exec mysql-db mysql -u root -p
 
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
