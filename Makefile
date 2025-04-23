@@ -1,4 +1,4 @@
-.PHONY: help build-local up down logs ps test migrate mysql
+.PHONY: help build-local up down logs ps test migrate mysql lint-check lint-fix
 .DEFAULT_GOAL := help
 
 build-local: ## Build docker image to local development
@@ -24,6 +24,12 @@ migrate:  ## Execute migration
 
 mysql: ## Access MySQL Database
 	docker compose exec mysql-db mysql -u root -p
+
+lint-check: ## Run Rubocop for checking
+	docker compose run --rm todo-api bundle exec rubocop
+
+lint-fix: ## Run Rubocop with auto-correction
+	docker compose run --rm todo-api bundle exec rubocop -a
 
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
