@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
+  before_action :set_user, only: %i[show update destroy]
 
   # GET /users
   def index
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     if @user
       render json: @user, status: :ok
     else
-      render json: { error: "User not found" }, status: :not_found
+      render json: { error: 'User not found' }, status: :not_found
     end
   end
 
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
       @tasks = @user.tasks
       render json: @tasks, status: :ok
     else
-      render json: { error: "User not found" }, status: :not_found
+      render json: { error: 'User not found' }, status: :not_found
     end
   end
 
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    render json: { error: "User not found" }, status: :not_found
+    render json: { error: 'User not found' }, status: :not_found
   end
 
   def user_params

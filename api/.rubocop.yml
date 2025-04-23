@@ -1,1 +1,21 @@
 inherit_from: .rubocop_todo.yml
+
+AllCops:
+  Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'config.ru'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+    - 'Rakefile'
+
+Style/StringLiterals:
+  Enabled: true
+
+Style/SymbolArray:
+  EnforcedStyle: percent
+  MinSize: 0
+
+Layout/LineLength:
+  Max: 120

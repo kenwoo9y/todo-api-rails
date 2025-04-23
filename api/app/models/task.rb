@@ -1,12 +1,12 @@
 class Task < ApplicationRecord
   # Associated with User model
-  belongs_to :owner, class_name: "User"
+  belongs_to :owner, class_name: 'User'
 
   # Status
   STATUSES = {
-    "ToDo" => "ToDo",
-    "Doing" => "Doing",
-    "Done" => "Done"
+    'ToDo' => 'ToDo',
+    'Doing' => 'Doing',
+    'Done' => 'Done'
   }.freeze
 
   enum status: STATUSES, _prefix: :status
