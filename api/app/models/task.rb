@@ -15,7 +15,7 @@ class Task < ApplicationRecord
   }.freeze
 
   enum status: STATUSES, _prefix: :status
-  
+
   # Validations
   validates :title, presence: true, length: { maximum: 30 }
   validates :description, length: { maximum: 255 }, allow_blank: true
