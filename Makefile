@@ -29,7 +29,7 @@ lint-check: ## Run Rubocop for checking
 	docker compose run --rm todo-api bundle exec rubocop
 
 lint-fix: ## Run Rubocop with auto-correction
-	docker compose run --rm todo-api bundle exec rubocop -a
+	docker compose run --rm todo-api bundle exec rubocop -A
 
 help: ## Show options
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
