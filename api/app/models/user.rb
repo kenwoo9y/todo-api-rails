@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
     # Associated with Task model
     has_many :tasks, foreign_key: :owner_id, dependent: :destroy

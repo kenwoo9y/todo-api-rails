@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Task < ApplicationRecord
   # Associated with User model
   belongs_to :owner, class_name: 'User'
