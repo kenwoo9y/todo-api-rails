@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+# TasksController
+#
+# This controller handles the CRUD operations for the Task model.
+# It provides endpoints for listing tasks, showing a single task,
+# creating a new task, updating an existing task, and deleting a task.
 class TasksController < ApplicationController
   before_action :set_task, only: %i[show update destroy]
 

@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+# UsersController
+#
+# This controller handles the CRUD operations for the User model.
+# It provides endpoints for listing users, showing a single user, 
+# creating a new user, updating an existing user, and deleting a user.
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show update destroy]
 

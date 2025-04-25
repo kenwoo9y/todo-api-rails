@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# Task
+#
+# This model represents a task in the application.
 class Task < ApplicationRecord
   # Associated with User model
   belongs_to :owner, class_name: 'User'

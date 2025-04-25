@@ -105,20 +105,3 @@ Metrics/PerceivedComplexity:
 Style/BlockComments:
   Exclude:
     - 'spec/spec_helper.rb'
-
-# Offense count: 9
-# Configuration parameters: AllowedConstants.
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'app/controllers/tasks_controller.rb'
-    - 'app/controllers/users_controller.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/models/application_record.rb'
-    - 'app/models/task.rb'
-    - 'app/models/user.rb'
-    - 'config/application.rb'
-    - 'db/migrate/20250418132723_create_users.rb'
-    - 'db/migrate/20250418132848_create_tasks.rb'
-
