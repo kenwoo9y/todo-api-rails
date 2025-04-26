@@ -8,4 +8,4 @@ default: &default
 
 test:
   <<: *default
-  database: your_app_test
+  database: todo_test
