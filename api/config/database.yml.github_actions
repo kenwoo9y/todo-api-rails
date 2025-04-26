@@ -1,0 +1,11 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: 5
+  username: todo
+  password: todo
+  host: 127.0.0.1
+
+test:
+  <<: *default
+  database: todo_test

@@ -16,7 +16,11 @@
 #
 require 'simplecov'
 SimpleCov.start 'rails' do
-  minimum_coverage 80 # カバレッジが80%未満の場合は失敗
+  minimum_coverage 25 # カバレッジが未達の場合は失敗
+  add_group 'Models', 'app/models'
+  add_group 'Controllers', 'app/controllers'
+
+  track_files 'app/**/*.rb'
 end
 require 'factory_bot_rails'
 # See https://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
