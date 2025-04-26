@@ -51,7 +51,7 @@ jobs:
           RAILS_ENV: test
         run: |
           cp config/database.yml.github_actions config/database.yml
-          bundle exec rails db:create db:schema:load
+          bundle exec rails db:prepare
 
       # RubocopによるLintとFormatチェック
       - name: Run Rubocop for linting and formatting
