@@ -41,13 +41,17 @@ jobs:
           ruby-version: '3.2' # Rubyのバージョンを指定
           bundler-cache: true
 
+      # 依存関係のインストール
+      - name: Install dependencies
+        run: bundle install --jobs 4 --retry 3
+
       # データベースのセットアップ
       - name: Setup database
         env:
           RAILS_ENV: test
         run: |
           cp config/database.yml.github_actions config/database.yml
-          bundle exec rails db:prepare
+          bundle exec rails db:create db:schema:load
 
       # RubocopによるLintとFormatチェック
       - name: Run Rubocop for linting and formatting
