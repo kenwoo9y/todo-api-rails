@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # Users
   resources :users do
     collection do
-      get 'show_by_username', to: 'users#show_by_username'
+      get 'username/:username', to: 'users#show_by_username'
     end
     member do
       get 'tasks', to: 'users#tasks_by_user'
