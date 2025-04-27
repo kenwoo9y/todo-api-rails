@@ -13,6 +13,10 @@ jobs:
   ruby-ci:
     runs-on: ubuntu-latest
 
+    env:
+      RAILS_ENV: test
+      CORS_ORIGINS: 'http://localhost:3000'
+
     services:
       db:
         image: mysql:8.0
@@ -47,9 +51,6 @@ jobs:
 
       # データベースのセットアップ
       - name: Setup database
-        env:
-          RAILS_ENV: test
-          CORS_ORIGINS: 'http://localhost:3000'
         run: |
           cp config/database.yml.github_actions config/database.yml
           bundle exec rails db:prepare
