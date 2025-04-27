@@ -49,6 +49,7 @@ jobs:
       - name: Setup database
         env:
           RAILS_ENV: test
+          CORS_ORIGINS: 'http://localhost:3000'
         run: |
           cp config/database.yml.github_actions config/database.yml
           bundle exec rails db:prepare
