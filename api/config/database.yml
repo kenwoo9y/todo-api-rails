@@ -1,6 +1,8 @@
 default: &default
   adapter: <%= ENV.fetch("DB_TYPE") == "postgresql" ? "postgresql" : "mysql2" %>
-  encoding: utf8
+  encoding: utf8mb4
+  charset: utf8mb4
+  collation: utf8mb4_unicode_ci
   host: <%= ENV["DB_HOST"] %>
   port: <%= ENV["DB_PORT"] %>
   username: <%= ENV["DB_USER"] %>

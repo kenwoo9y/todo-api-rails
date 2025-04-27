@@ -23,7 +23,7 @@ migrate:  ## Execute migration
 	docker compose exec todo-api rails db:migrate
 
 mysql: ## Access MySQL Database
-	docker compose exec mysql-db mysql -u root -p
+	docker compose exec mysql-db mysql -u root -p --default-character-set=utf8mb4
 
 lint-check: ## Run Rubocop for checking
 	docker compose run --rm todo-api bundle exec rubocop
