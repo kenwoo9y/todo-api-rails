@@ -45,17 +45,29 @@ This is a ToDo Web API implemented with Ruby on Rails, designed for simplicity a
     $ cd todo-api-rails
     ```
 
-2. Build the required Docker images:
+2. Create environment file:
+    ```
+    $ cp api/.env.example api/.env
+    ```
+    Edit `.env` file to match your environment if needed.
+
+3. Create symbolic link for Docker Compose:
+    ```
+    $ ln -s api/.env .env
+    ```
+    This allows Docker Compose to read environment variables from `api/.env`.
+
+4. Build the required Docker images:
     ```
     $ make build-local
     ```
 
-3. Start the containers:
+5. Start the containers:
     ```
     $ make up
     ```
 
-4. Apply database migrations:
+6. Apply database migrations:
     ```
     $ make migrate
     ```
