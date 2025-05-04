@@ -1,4 +1,4 @@
-.PHONY: help build-local up down logs ps test migrate mysql psql lint-check lint-fix
+.PHONY: help build-local up down logs ps migrate mysql psql test lint-check lint-fix
 .DEFAULT_GOAL := help
 
 build-local: ## Build docker image to local development
@@ -16,9 +16,6 @@ logs: ## Tail docker compose logs
 ps: ## Check container status
 	docker compose ps
 
-test: ## Execute tests
-	docker compose run --rm todo-api bundle exec rspec
-
 migrate:  ## Execute migration
 	docker compose exec todo-api rails db:migrate
 
@@ -27,6 +24,9 @@ mysql: ## Access MySQL Database
 
 psql: ## Access PostgreSQL Database
 	docker compose exec postgresql-db psql -U todo -d todo -W
+
+test: ## Execute tests
+	docker compose run --rm todo-api bundle exec rspec
 
 lint-check: ## Run Rubocop for checking
 	docker compose run --rm todo-api bundle exec rubocop
