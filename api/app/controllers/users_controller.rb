@@ -57,12 +57,14 @@ class UsersController < ApplicationController
   # GET /users/:id/tasks
   def tasks_by_user
     @user = User.find(params[:id])
-    if @user
-      @tasks = @user.tasks
-      render json: @tasks, status: :ok
-    else
-      render json: { error: 'User not found' }, status: :not_found
-    end
+    @tasks = @user.tasks.order(
+      Arel.sql(
+        "CASE status WHEN 'Done' THEN 1 ELSE 0 END ASC, due_date ASC, created_at DESC"
+      )
+    )
+    render json: @tasks, status: :ok
+  rescue ActiveRecord::RecordNotFound
+    render json: { error: 'User not found' }, status: :not_found
   end
 
   private

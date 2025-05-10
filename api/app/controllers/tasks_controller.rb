@@ -10,7 +10,11 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @tasks = Task.all
+    @tasks = Task.order(
+      Arel.sql(
+        "CASE status WHEN 'Done' THEN 1 ELSE 0 END ASC, due_date ASC, created_at DESC"
+      )
+    )
     render json: @tasks, status: :ok
   end
 
