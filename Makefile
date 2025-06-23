@@ -1,3 +1,6 @@
+include .env
+export
+
 .PHONY: help build-local up down logs ps migrate mysql psql test lint-check lint-fix
 .DEFAULT_GOAL := help
 
@@ -20,10 +23,10 @@ migrate:  ## Execute migration
 	docker compose exec todo-api rails db:migrate
 
 mysql: ## Access MySQL Database
-	docker compose exec mysql-db mysql -u root -p --default-character-set=utf8mb4
+	docker compose exec mysql-db mysql -u $$DB_USER -p$$DB_PASSWORD --default-character-set=utf8mb4
 
 psql: ## Access PostgreSQL Database
-	docker compose exec postgresql-db psql -U todo -d todo -W
+	docker compose exec postgresql-db psql -U $$DB_USER -d $$DB_NAME -W
 
 test: ## Execute tests
 	docker compose run --rm todo-api bundle exec rspec
@@ -35,5 +38,5 @@ lint-fix: ## Run Rubocop with auto-correction
 	docker compose run --rm todo-api bundle exec rubocop -A
 
 help: ## Show options
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' Makefile | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
