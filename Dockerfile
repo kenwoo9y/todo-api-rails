@@ -1,23 +1,23 @@
 FROM ruby:3.2
 
-# 必要なパッケージをインストール
+# Install required packages
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
-# 作業ディレクトリを作成
+# Create working directory
 WORKDIR /app/api
 
-# GemfileとGemfile.lockを先にコピー（キャッシュを効かせるため）
+# Copy Gemfile and Gemfile.lock first (for cache efficiency)
 COPY ./api/Gemfile ./Gemfile
 COPY ./api/Gemfile.lock ./Gemfile.lock
 
-# bundlerインストールと依存解決
+# Install bundler and resolve dependencies
 RUN gem install bundler && bundle install
 
-# その他ファイルをコピー
+# Copy other files
 COPY ./api .
 
-# ポート3000を開放
+# Expose port 3000
 EXPOSE 3000
 
-# サーバー起動コマンド
+# Server startup command
 CMD ["rails", "server", "-b", "0.0.0.0"]
