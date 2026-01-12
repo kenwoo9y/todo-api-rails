@@ -16,7 +16,7 @@
 #
 require 'simplecov'
 SimpleCov.start 'rails' do
-  minimum_coverage 25 # カバレッジが未達の場合は失敗
+  minimum_coverage 25 # Fail if coverage is below minimum
   add_group 'Models', 'app/models'
   add_group 'Controllers', 'app/controllers'
 
