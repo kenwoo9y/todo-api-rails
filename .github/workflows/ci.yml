@@ -1,4 +1,4 @@
-name: Ruby CI Workflow
+name: CI Workflow
 
 on:
   pull_request:
@@ -6,11 +6,10 @@ on:
 
 defaults:
   run:
-    working-directory: ./api  # 作業ディレクトリを指定
+    working-directory: ./api
 
 jobs:
-    
-  ruby-ci:
+  ci:
     runs-on: ubuntu-latest
 
     env:
@@ -34,33 +33,27 @@ jobs:
             --health-retries=3
 
     steps:
-      # コードのチェックアウト
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # Rubyのセットアップ
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2' # Rubyのバージョンを指定
+          ruby-version: '3.2'
           bundler-cache: true
 
-      # 依存関係のインストール
       - name: Install dependencies
         run: bundle install --jobs 4 --retry 3
 
-      # データベースのセットアップ
       - name: Setup database
         run: |
           cp config/database.yml.github_actions config/database.yml
           bundle exec rails db:prepare
 
-      # RubocopによるLintとFormatチェック
       - name: Run Rubocop for linting and formatting
         run: |
           bundle exec rubocop
 
-      # RSpecのテスト実行
       - name: Run RSpec with coverage
         run: |
           bundle exec rspec
